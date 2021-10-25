@@ -1,0 +1,81 @@
+{
+	"name": "app",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint",
+		"test:unit": "vue-cli-service test:unit",
+		"test:cypress": "npx cypress open",
+		"deploy": "npm i && npm run build && pm2 delete app && npm run pm2-prod",
+		"deploy-local": "http-server dist -p 8082 -a cognitivefunctiontask.local -S -C cognitivefunctiontask.local.crt -K cognitivefunctiontask.local.key",
+		"icons": "vue-asset-generate -a ./public/img/favicon.png -o ./public/img/icons",
+		"pm2-prod": "pm2 serve ./dist 8082 --name app"
+	},
+	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^1.2.28",
+		"@fortawesome/free-solid-svg-icons": "^5.13.0",
+		"@fortawesome/vue-fontawesome": "^0.1.9",
+		"axios": "^0.19.2",
+		"core-js": "^3.6.4",
+		"js-datepicker": "^5.12.0",
+		"lodash": "^4.17.15",
+		"register-service-worker": "^1.7.1",
+		"reset-css": "^5.0.1",
+		"vue": "^2.6.11",
+		"vue-loading-overlay": "^3.3.2",
+		"vue-numeral-filter": "^2.0.0",
+		"vue-progressbar": "^0.7.5",
+		"vue-router": "^3.1.6",
+		"vue2-touch-events": "^2.2.1"
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-babel": "~4.3.0",
+		"@vue/cli-plugin-eslint": "~4.3.0",
+		"@vue/cli-plugin-pwa": "^4.4.1",
+		"@vue/cli-plugin-router": "^4.3.1",
+		"@vue/cli-plugin-unit-jest": "^4.4.1",
+		"@vue/cli-service": "~4.3.0",
+		"babel-eslint": "^10.1.0",
+		"cypress": "^4.9.0",
+		"cypress-mongo-seeder": "^1.0.7",
+		"eslint": "^6.7.2",
+		"eslint-plugin-vue": "^6.2.2",
+		"node-sass": "^4.14.1",
+		"sass-loader": "^8.0.2",
+		"style-resources-loader": "^1.3.3",
+		"vue-cli-plugin-style-resources-loader": "^0.1.4",
+		"vue-template-compiler": "^2.6.11"
+	},
+	"eslintConfig": {
+		"root": true,
+		"env": {
+			"node": true
+		},
+		"extends": [
+			"plugin:vue/essential",
+			"eslint:recommended"
+		],
+		"parserOptions": {
+			"parser": "babel-eslint"
+		},
+		"rules": {},
+		"overrides": [
+			{
+				"files": [
+					"**/cypress/*.{j,t}s?(x)",
+					"**/tests/unit/**/*.spec.{j,t}s?(x)"
+				],
+				"env": {
+					"jest": true
+				}
+			}
+		]
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not dead"
+	]
+}
